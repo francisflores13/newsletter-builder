@@ -1,7 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creador de Newsletter</title>
+    <!-- Carga de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .form-container {
+            width: 40%;
+            padding: 2rem;
+            overflow-y: auto;
+            background-color: #f7fafc;
+            border-right: 1px solid #e2e8f0;
+        }
+        .preview-container {
+            width: 60%;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            background-color: #edf2f7;
+        }
+        .preview-iframe {
+            flex-grow: 1;
+            width: 100%;
+            border: none;
+        }
+        .form-section {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: #ffffff;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        .form-section-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #ef3f34;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #ef3f34;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #4a5568;
+        }
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border: 1px solid #cbd5e0;
+            border-radius: 0.375rem;
+            font-size: 1rem;
+            box-sizing: border-box; /* Asegura que el padding no aumente el tamaño total */
+        }
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        .btn-download {
+            background-color: #ef3f34;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.3s ease;
+            width: 100%;
+            margin-top: 1rem;
+        }
+        .btn-download:hover {
+            background-color: #d6362c;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1 class="text-2xl font-bold text-center mb-6 text-gray-800">Generador de Newsletter HTML</h1>
+
+        <form id="newsletterForm">
+            <!-- Sección: Cuerpo del mensaje -->
+            <div class="form-section">
+                <h2 class="form-section-title">Cuerpo del Mensaje</h2>
+                <label for="mainTitle">Titular principal:</label>
+                <input type="text" id="mainTitle" name="titulo-grande" placeholder="Introduce el titular principal">
+
+                <label for="paragraph1">Primer párrafo:</label>
+                <textarea id="paragraph1" name="parrafo-1" placeholder="Introduce el primer párrafo"></textarea>
+
+                <label for="paragraph2">Segundo párrafo:</label>
+                <textarea id="paragraph2" name="parrafo-2" placeholder="Introduce el segundo párrafo"></textarea>
+
+                <label for="boldParagraph">Párrafo destacado (en negrita):</label>
+                <textarea id="boldParagraph" name="parrafo-negrita" placeholder="Introduce el párrafo destacado"></textarea>
+
+                <label for="finalParagraph">Párrafo final:</label>
+                <textarea id="finalParagraph" name="parrafo-final" placeholder="Introduce el párrafo final"></textarea>
+            </div>
+
+            <!-- Sección: Primer curso -->
+            <div class="form-section">
+                <h2 class="form-section-title">Primer Curso</h2>
+                <p>El curso no se muestra si no se incluye la ID de la imagen.</p>
+                <br>
+                <label for="course1Image">Imagen (ID Google)</label>
+                <input type="text" id="course1Image" name="imagen-1" placeholder="URL de la imagen del curso 1">
+
+                <label for="course1Link">Enlace:</label>
+                <input type="text" id="course1Link" name="enlace-1" placeholder="URL del curso 1">
+
+                <label for="course1Title">Título:</label>
+                <input type="text" id="course1Title" name="titulo-1" placeholder="Título del curso 1">
+
+                <label for="course1Description">Descripción:</label>
+                <textarea id="course1Description" name="descripcion-1" placeholder="Descripción del curso 1"></textarea>
+            </div>
+
+            <!-- Sección: Segundo curso -->
+            <div class="form-section">
+                <h2 class="form-section-title">Segundo Curso</h2>
+                <p>El curso no se muestra si no se incluye la ID de la imagen.</p>
+                <br>
+                <label for="course2Image">Imagen (ID Google)</label>
+                <input type="text" id="course2Image" name="imagen-2" placeholder="URL de la imagen del curso 2">
+
+                <label for="course2Link">Enlace:</label>
+                <input type="text" id="course2Link" name="enlace-2" placeholder="URL del curso 2">
+
+                <label for="course2Title">Título:</label>
+                <input type="text" id="course2Title" name="titulo-2" placeholder="Título del curso 2">
+
+                <label for="course2Description">Descripción:</label>
+                <textarea id="course2Description" name="descripcion-2" placeholder="Descripción del curso 2"></textarea>
+            </div>
+
+            <!-- Sección: Tercer curso -->
+            <div class="form-section">
+                <h2 class="form-section-title">Tercer Curso</h2>
+                <p>El curso no se muestra si no se incluye la ID de la imagen.</p>
+                <br>
+                <label for="course3Image">Imagen (ID Google)</label>
+                <input type="text" id="course3Image" name="imagen-3" placeholder="URL de la imagen del curso 3">
+
+                <label for="course3Link">Enlace:</label>
+                <input type="text" id="course3Link" name="enlace-3" placeholder="URL del curso 3">
+
+                <label for="course3Title">Título:</label>
+                <input type="text" id="course3Title" name="titulo-3" placeholder="Título del curso 3">
+
+                <label for="course3Description">Descripción:</label>
+                <textarea id="course3Description" name="descripcion-3" placeholder="Descripción del curso 3"></textarea>
+            </div>
+
+            <!-- Sección: Cuarto curso -->
+            <div class="form-section">
+                <h2 class="form-section-title">Cuarto Curso</h2>
+                <p>El curso no se muestra si no se incluye la ID de la imagen.</p>
+                <br>
+                <label for="course4Image">Imagen (ID Google)</label>
+                <input type="text" id="course4Image" name="imagen-4" placeholder="URL de la imagen del curso 4">
+
+                <label for="course4Link">Enlace:</label>
+                <input type="text" id="course4Link" name="enlace-4" placeholder="URL del curso 4">
+
+                <label for="course4Title">Título:</label>
+                <input type="text" id="course4Title" name="titulo-4" placeholder="Título del curso 4">
+
+                <label for="course4Description">Descripción:</label>
+                <textarea id="course4Description" name="descripcion-4" placeholder="Descripción del curso 4"></textarea>
+            </div>
+
+            <button type="button" id="downloadBtn" class="btn-download">Descargar HTML</button>
+        </form>
+    </div>
+
+    <div class="preview-container">
+        <iframe id="previewIframe" class="preview-iframe"></iframe>
+    </div>
+
+    <script>
+        // Plantilla HTML de la newsletter
+        const newsletterTemplate = `
 <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0;padding:120px 60px;font-family:poppins,sans-serif;line-height:1.3rem; background-image: url('https://lh3.googleusercontent.com/d/1lSJ5ywDhA3YdRzuK1jqef5MCqK1DIDrc');">
   <tr>
     <td align="center">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:720px;margin:0 auto;border-collapse:collapse; background: #fff; border: ">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:720px;margin:0 auto;border-collapse:collapse; background: #fff;">
         <tr>
           <td align="center" style="padding:0; text-align:center; margin: 0">
             <a href="https://www.cibervoluntarios.org/es/formacion-gratuita/aprende-a-tu-ritmo" target="_blank"><img src="https://lh3.googleusercontent.com/d/1SrJLIQrtYKmt8yBpRUNu5UH5KnZQWoif" alt="Cabecera newsletter Cibervoluntarios" style="width: 100%;"></a>
@@ -9,55 +203,56 @@
         </tr>
         <tr>
           <td align="center" style="text-align:center; padding: 45px">
-            <h1 style="font-size:2rem;line-height:2.2rem;font-weight:700;margin:0; padding:0 0 20px 0; color: #ef3f34; border-bottom: 1px solid #ef3f34;">Iaculis laoreet risus risus at sem</h1>
-            <p style="font-size:1rem;line-height:1.2rem;margin:20px 0;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum commodo viverra diam nec eleifend. Vivamus orci enim, consectetur nec malesuada eu, rutrum eget ex. Sed non consequat justo. <a href="https://www.cibervoluntarios.org/es/formacion-gratuita/aprende-a-tu-ritmo" style="color: #ef3f34;" target="_blank">Aprende a tu Ritmo</a></p>
-            <p style="font-size:1rem;line-height:1.2rem;margin:30px 0 0 0;"><b>Sigue formándote y potencia tus habilidades digitales. ¡Con Cibervoluntarios es fácil, está chupado! ✨</b></p>
+            <h1 style="font-size:2rem;line-height:2.3rem;font-weight:700;margin:0; padding:0 0 20px 0; color: #ef3f34; border-bottom: 1px solid #ef3f34;">titulo-grande</h1>
+            <p style="font-size:1rem;line-height:1.3rem;margin:20px 0;">parrafo-1</p>
+            <p style="font-size:1rem;line-height:1.3rem;margin:20px 0;">parrafo-2</p>
+            <p style="font-size:1rem;line-height:1.3rem;margin:20px 0;"><b>parrafo-negrita</b></p>
+            <p style="font-size:1rem;line-height:1.3rem;margin:30px 0 0 0;">parrafo-final</p>
           </td>
         </tr>
         <tr>
           <td style="padding:0 30px 30px 30px;">
             <table width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:720px;border-collapse:collapse; background:#eaeaea;">
-              
-              <tr>
+              <!-- Primer curso -->
+              <tr id="course-row-1">
                 <td width="30%" style="padding:30px 15px 15px 30px">
-                  <a href="#" target="_blank"><img src="https://lh3.googleusercontent.com/d/1A-c-DolbcxDUojFdZKjoPYESXoH8VBqc" style="display:block;width:100%;max-width: 220px; height:auto;border:0;outline:none;text-decoration:none;" alt="xxx"></a>
+                  <a href="enlace-1" target="_blank"><img src="https://lh3.googleusercontent.com/d/imagen-1" style="display:block;width:100%;max-width: 220px; height:auto;border:0;outline:none;text-decoration:none;" alt="titulo-1"></a>
                 </td>
                 <td width="70%" style="padding: 30px 30px 15px 0">
-                  <h2 style="color: #ef3f34; font-size: 1.4rem; line-weight: 1.7rem; font-weight: 600; margin: 0 0 10px 0;">Título2</h2>
-                  <p style="font-size:1rem;line-height:1.2rem; margin: 0 0 10px 0;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum commodo viverra diam nec eleifend. Vivamus orci enim, consectetur nec malesuada eu, rutrum eget ex. Sed non consequat justo. </p>
+                  <h2 style="color: #ef3f34; font-size: 1.4rem; line-weight: 1.7rem; font-weight: 600; margin: 0 0 10px 0;">titulo-1</h2>
+                  <p style="font-size:1rem;line-height:1.2rem; margin: 0 0 10px 0;">descripcion-1</p>
                 </td>
               </tr>
-             
-              <tr>
+              <!-- Segundo curso -->
+              <tr id="course-row-2">
                 <td width="30%" style="padding:15px 15px 15px 30px">
-                  <a href="#" target="_blank"><img src="https://lh3.googleusercontent.com/d/1A-c-DolbcxDUojFdZKjoPYESXoH8VBqc" style="display:block;width:100%;max-width: 220px; height:auto;border:0;outline:none;text-decoration:none;" alt="xxx"></a>
+                  <a href="enlace-2" target="_blank"><img src="https://lh3.googleusercontent.com/d/imagen-2" style="display:block;width:100%;max-width: 220px; height:auto;border:0;outline:none;text-decoration:none;" alt="titulo-2"></a>
                 </td>
                 <td width="70%" style="padding: 15px 30px 15px 0">
-                  <h2 style="color: #ef3f34; font-size: 1.4rem; line-weight: 1.7rem; font-weight: 600; margin: 0 0 10px 0;">Título2</h2>
-                  <p style="font-size:1rem;line-height:1.2rem; margin: 0 0 10px 0;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum commodo viverra diam nec eleifend. Vivamus orci enim, consectetur nec malesuada eu, rutrum eget ex. Sed non consequat justo. </p>
+                  <h2 style="color: #ef3f34; font-size: 1.4rem; line-weight: 1.7rem; font-weight: 600; margin: 0 0 10px 0;">titulo-2</h2>
+                  <p style="font-size:1rem;line-height:1.2rem; margin: 0 0 10px 0;">descripcion-2</p>
                 </td>
               </tr>
-
-              <tr>
+              <!-- Tercer curso -->
+              <tr id="course-row-3">
                 <td width="30%" style="padding:15px 15px 15px 30px">
-                  <a href="#" target="_blank"><img src="https://lh3.googleusercontent.com/d/1A-c-DolbcxDUojFdZKjoPYESXoH8VBqc" style="display:block;width:100%;max-width: 220px; height:auto;border:0;outline:none;text-decoration:none;" alt="xxx"></a>
+                  <a href="enlace-3" target="_blank"><img src="https://lh3.googleusercontent.com/d/imagen-3" style="display:block;width:100%;max-width: 220px; height:auto;border:0;outline:none;text-decoration:none;" alt="titulo-3"></a>
                 </td>
                 <td width="70%" style="padding: 15px 30px 15px 0">
-                  <h2 style="color: #ef3f34; font-size: 1.4rem; line-weight: 1.7rem; font-weight: 600; margin: 0 0 10px 0;">Título2</h2>
-                  <p style="font-size:1rem;line-height:1.2rem; margin: 0 0 10px 0;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum commodo viverra diam nec eleifend. Vivamus orci enim, consectetur nec malesuada eu, rutrum eget ex. Sed non consequat justo. </p>
+                  <h2 style="color: #ef3f34; font-size: 1.4rem; line-weight: 1.7rem; font-weight: 600; margin: 0 0 10px 0;">titulo-3</h2>
+                  <p style="font-size:1rem;line-height:1.2rem; margin: 0 0 10px 0;">descripcion-3</p>
                 </td>
               </tr>
-
-              <tr>
+              <!-- Cuarto curso -->
+              <tr id="course-row-4">
                 <td width="30%" style="padding:15px 15px 30px 30px">
-                  <a href="#" target="_blank"><img src="https://lh3.googleusercontent.com/d/1A-c-DolbcxDUojFdZKjoPYESXoH8VBqc" style="display:block;width:100%;max-width: 220px; height:auto;border:0;outline:none;text-decoration:none;" alt="xxx"></a>
+                  <a href="enlace-4" target="_blank"><img src="https://lh3.googleusercontent.com/d/imagen-4" style="display:block;width:100%;max-width: 220px; height:auto;border:0;outline:none;text-decoration:none;" alt="titulo-4"></a>
                 </td>
                 <td width="70%" style="padding: 15px 30px 30px 0">
-                  <h2 style="color: #ef3f34; font-size: 1.4rem; line-weight: 1.7rem; font-weight: 600; margin: 0 0 10px 0;">Título2</h2>
-                  <p style="font-size:1rem;line-height:1.2rem; margin: 0;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum commodo viverra diam nec eleifend. Vivamus orci enim, consectetur nec malesuada eu, rutrum eget ex. Sed non consequat justo. </p>
+                  <h2 style="color: #ef3f34; font-size: 1.4rem; line-weight: 1.7rem; font-weight: 600; margin: 0 0 10px 0;">titulo-4</h2>
+                  <p style="font-size:1rem;line-height:1.2rem; margin: 0;">descripcion-4</p>
                 </td>
               </tr>
-           
             </table>
           </td>
         </tr>
@@ -65,3 +260,89 @@
     </td>
   </tr>
 </table>
+        `;
+
+        const form = document.getElementById('newsletterForm');
+        const previewIframe = document.getElementById('previewIframe');
+        const downloadBtn = document.getElementById('downloadBtn');
+
+        // Función para procesar el HTML de la newsletter
+        function processNewsletterHtml(template) {
+            let processedHtml = template;
+            const formData = new FormData(form);
+
+            // Reemplazar campos del cuerpo del mensaje
+            processedHtml = processedHtml.replace('titulo-grande', formData.get('titulo-grande') || '');
+            processedHtml = processedHtml.replace('parrafo-1', formData.get('parrafo-1') || '');
+            processedHtml = processedHtml.replace('parrafo-2', formData.get('parrafo-2') || '');
+            processedHtml = processedHtml.replace('parrafo-negrita', formData.get('parrafo-negrita') || '');
+            processedHtml = processedHtml.replace('parrafo-final', formData.get('parrafo-final') || '');
+
+            // Primera pasada: Eliminar las filas de los cursos que no tienen imagen
+            for (let i = 1; i <= 4; i++) {
+                const image = formData.get(`imagen-${i}`);
+                const courseRowId = `course-row-${i}`;
+                const courseRowRegex = new RegExp(`<tr id="${courseRowId}">([\\s\\S]*?)<\\/tr>`, 'g');
+
+                if (!image) {
+                    // Si no hay imagen, eliminar la fila completa del curso
+                    processedHtml = processedHtml.replace(courseRowRegex, '');
+                }
+            }
+
+            // Segunda pasada: Reemplazar el contenido de los cursos que sí tienen imagen
+            for (let i = 1; i <= 4; i++) {
+                const image = formData.get(`imagen-${i}`);
+                if (image) { // Solo procesar si la fila no fue eliminada en la primera pasada
+                    const link = formData.get(`enlace-${i}`);
+                    const title = formData.get(`titulo-${i}`);
+                    const description = formData.get(`descripcion-${i}`);
+
+                    // Usar reemplazos globales para todos los marcadores de posición relacionados con el curso
+                    processedHtml = processedHtml.replace(new RegExp(`enlace-${i}`, 'g'), link || '#');
+                    processedHtml = processedHtml.replace(new RegExp(`imagen-${i}`, 'g'), image);
+                    processedHtml = processedHtml.replace(new RegExp(`titulo-${i}`, 'g'), title || '');
+                    processedHtml = processedHtml.replace(new RegExp(`descripcion-${i}`, 'g'), description || '');
+                }
+            }
+
+            // Sustituir "Aprende a tu ritmo" por el enlace HTML
+            const learnAtYourPaceLink = `<a href="https://www.cibervoluntarios.org/es/formacion-gratuita/aprende-a-tu-ritmo" style="color: #ef3f34;" target="_blank" class="enlace">"Aprende a tu ritmo"</a>`;
+            processedHtml = processedHtml.replace(/"Aprende a tu ritmo"/g, learnAtYourPaceLink);
+
+            return processedHtml;
+        }
+
+        // Función para actualizar la vista previa
+        function updatePreview() {
+            const finalHtml = processNewsletterHtml(newsletterTemplate);
+            const doc = previewIframe.contentWindow.document;
+            doc.open();
+            doc.write(finalHtml);
+            doc.close();
+        }
+
+        // Evento para el botón de descarga
+        downloadBtn.addEventListener('click', () => {
+            const finalHtml = processNewsletterHtml(newsletterTemplate); // Usar la misma lógica de procesamiento
+            const blob = new Blob([finalHtml], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+
+            // Crear un enlace temporal y simular un clic para la descarga
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'newsletter.html';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url); // Liberar el objeto URL
+        });
+
+        // Escuchar cambios en el formulario para actualizar la vista previa
+        form.addEventListener('input', updatePreview);
+
+        // Inicializar la vista previa al cargar la página
+        window.onload = updatePreview;
+    </script>
+</body>
+</html>
